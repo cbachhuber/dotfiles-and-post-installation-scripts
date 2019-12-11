@@ -36,8 +36,8 @@ sudo apt install -y gimp inkscape pdftk imagemagick
 sudo apt install -y unrar htop iotop
 
 # Essential dev tools
-sudo apt install -y -y neovim zsh git terminator curl python3-dev python3-pip python3-setuptools build-essential cmake libgtest-dev
-# configure terminator: show more lines than default
+sudo apt install -y neovim zsh git terminator curl python3-dev python3-pip python3-setuptools build-essential cmake libgtest-dev
+# TODO configure terminator (~/.config/terminator/config looks like a json file): show more lines than default
 sudo apt install -y powerline fonts-powerline
 
 # Git configuration
@@ -51,7 +51,8 @@ git config --global user.email $GIT_MAIL
 git config --global core.pager 'less -F -X'  # use less only if you output does not fit to the screen
 git config --global core.editor 'vim'  # more handy than nano when closing with 'ZZ' (discard with ':cq')
 git config --global core.excludesFile "$CONFIG_FOLDER"/global_gitignore
-# TODO git aliases
+echo "[include]
+>-------path = /home/$(whoami)/.dotfiles/config/gitconfig" >> ~/.gitconfig  # $HOME expansion not supported in gitconfig, need absolute path
 
 # TODO bash/zsh aliases
 
