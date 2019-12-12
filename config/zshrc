@@ -20,6 +20,60 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
+# List directory contents upon change to
+cl () {cd "$@" && ll}
+
+# Proper df output
+alias df='df -h -x squashfs -x tmpfs -x devtmpfs'
+
+# Zsh key combos
+bindkey '^ ' autosuggest-execute  # Executes a suggestion on ctrl+space
+bindkey "^[[5~" history-beginning-search-backward  # pg-up
+bindkey "^[[6~" history-beginning-search-forward  # pg-dn
+
+© 2019 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
+# List directory contents upon change to
+cl () {cd "$@" && ll}
+
+# Proper df output
+alias df='df -h -x squashfs -x tmpfs -x devtmpfs'
+
+# Zsh key combos
+bindkey '^ ' autosuggest-execute  # Executes a suggestion on ctrl+space
+bindkey "^[[5~" history-beginning-search-backward  # pg-up
+bindkey "^[[6~" history-beginning-search-forward  # pg-dn
+
+© 2019 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+
+Pricing
+API
+Training
+Blog
+About
+
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
 # If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
@@ -131,11 +185,15 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
 # List directory contents upon change to
 cl () {cd "$@" && ll}
 
-# Proper df output
+# Proper df and du outputs
 alias df='df -h -x squashfs -x tmpfs -x devtmpfs'
+alias du1='du -hd 1'
 
 # Zsh key combos
 bindkey '^ ' autosuggest-execute  # Executes a suggestion on ctrl+space
 bindkey "^[[5~" history-beginning-search-backward  # pg-up
 bindkey "^[[6~" history-beginning-search-forward  # pg-dn
 
+# Vim-mode in zsh
+bindkey -v  # Enable vim in command line
+bindkey '^R' history-incremental-search-backward  # Override vim's ctrl+r shortcut to use bash's incremental backward history search
