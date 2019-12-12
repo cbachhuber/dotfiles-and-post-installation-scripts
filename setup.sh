@@ -52,7 +52,7 @@ git config --global core.pager 'less -F -X'  # use less only if you output does 
 git config --global core.editor 'vim'  # more handy than nano when closing with 'ZZ' (discard with ':cq')
 git config --global core.excludesFile "$CONFIG_FOLDER"/global_gitignore
 echo "[include]
->-------path = /home/$(whoami)/.dotfiles/config/gitconfig" >> ~/.gitconfig  # $HOME expansion not supported in gitconfig, need absolute path
+	path = /home/$(whoami)/.dotfiles/config/gitconfig" >> ~/.gitconfig  # $HOME expansion not supported in gitconfig, need absolute path
 
 
 # TODO bash/zsh aliases
