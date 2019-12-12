@@ -1,6 +1,6 @@
-# My Ubuntu OS installation script and config files
+# My Ubuntu Post Installation Script and Config Files
 
-Tested for Ubuntu 18.04 LTS
+Tested for Ubuntu 18.04 LTS.
 
 I suggest cloning this repository to ~/.dotfiles. Though any other location will work as well. Just make sure to not touch the folder after you started relying on the dotfiles in it.
 
