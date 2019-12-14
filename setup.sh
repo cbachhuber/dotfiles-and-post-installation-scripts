@@ -2,6 +2,18 @@
 
 set -eu
 
+# TODO add script that executes a command an prompts 'Close me when you're done'
+# TODO make programs such as gnome-tweaks, settings etc. silent (no command line output)
+
+prompt_message_and_wait_for_input()
+{
+    echo "$1"
+    sleep 0.5
+    read -p "Waiting for you to press [enter]..." DUMMY_VARIABLE
+    printf "Continuing execution!\n\n"
+    sleep 0.5
+}
+
 # Let the user clone this repo to any location
 DOTFILES_PATH="$( cd "$(dirname "$0")" ; pwd -P )"
 CONFIG_FOLDER=""$DOTFILES_PATH"/config"
@@ -18,16 +30,15 @@ else
     echo " 1. To use the nice dark mode in your OS, change Appearance->Themes->Applications to 'Adwaita-dark'."
     echo " 2. Also consider changing your cursor appearance"
     echo " 3. Under Top Bar, enable date and week numbers"
-    echo " 4. Under 'Extensions', enable and configure openweather and System-monitor"
+    echo " 4. Under 'Extensions', enable and configure openweather and System-monitor. Close me when you're done."
     gnome-tweaks
-    # TODO make programs such as gnome-tweaks, settings etc. silent
 fi
 
-echo "Add a german, english, or other keyboard layout, if you like"
+echo "Add a german, english, or other keyboard layout, if you like. Close me when you're done"
 gnome-control-center region
-echo "Fix your key repeat delay and rate by clicking 'Typing->Repeat Keys'. Be careful to not set the delay too low, and the rate too high. Experiment with a text editor on the side. Note: the speed slider is inverse! Pushing it leftwards means higher repeat rate."
+echo "Fix your key repeat delay and rate by clicking 'Typing->Repeat Keys'. Be careful to not set the delay too low, and the rate too high. Experiment with the text editor on the side. Note: the speed slider is inverse! Pushing it leftwards means higher repeat rate. Close the windows if you're done."
 gedit & gnome-control-center universal-access
-echo "Fix your automatic suspend delays: click on 'Automatic suspend', then choose to your liking"
+echo "Fix your automatic suspend delays: click on 'Automatic suspend', then choose to your liking. Close when you're done."
 gnome-control-center power
 
 # TODO Browser selection
@@ -48,13 +59,11 @@ sudo apt install -y unrar htop iotop
 # Essential dev tools
 sudo apt install -y neovim zsh git terminator curl python3-dev python3-pip python3-setuptools build-essential cmake libgtest-dev
 sudo apt install -y powerline fonts-powerline
-echo "Let terminator show more lines: right-click into this text, click 'Preferences->Profile->Scrolling'. Under 'Scrollback', set the number of lines to something more reasonable, e.g. 5000 lines."
+prompt_message_and_wait_for_input "Let terminator show more lines: right-click into this text, click 'Preferences->Profile->Scrolling'. Under 'Scrollback', set the number of lines to something more reasonable, e.g. 5000 lines."
 
 # Git configuration
-echo "Enter your git user name:"
-read GIT_NAME
-echo "Enter your git mail address:"
-read GIT_MAIL
+read -p "Enter your git user name: " GIT_NAME
+read -p "Enter your git mail address: " GIT_MAIL
 git config --global user.name $GIT_NAME
 git config --global user.email $GIT_MAIL
 git config --global core.pager 'less -F -X'  # use less only if you output does not fit to the screen
