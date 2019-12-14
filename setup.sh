@@ -20,6 +20,7 @@ else
     echo " 3. Under Top Bar, enable date and week numbers"
     echo " 4. Under 'Extensions', enable and configure openweather and System-monitor"
     gnome-tweaks
+    # TODO make programs such as gnome-tweaks, settings etc. silent
 fi
 
 echo "Add a german, english, or other keyboard layout, if you like"
@@ -46,8 +47,8 @@ sudo apt install -y unrar htop iotop
 
 # Essential dev tools
 sudo apt install -y neovim zsh git terminator curl python3-dev python3-pip python3-setuptools build-essential cmake libgtest-dev
-# TODO configure terminator (~/.config/terminator/config looks like a json file): show more lines than default
 sudo apt install -y powerline fonts-powerline
+echo "Let terminator show more lines: right-click into this text, click 'Preferences->Profile->Scrolling'. Under 'Scrollback', set the number of lines to something more reasonable, e.g. 5000 lines."
 
 # Git configuration
 echo "Enter your git user name:"
