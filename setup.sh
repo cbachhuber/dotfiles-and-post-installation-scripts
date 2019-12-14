@@ -2,8 +2,6 @@
 
 set -eu
 
-# TODO make programs such as gnome-tweaks, settings etc. silent (no command line output)
-
 prompt_message_and_wait_for_input()
 {
     echo "$1"
@@ -15,9 +13,9 @@ prompt_message_and_wait_for_input()
 
 run_command_and_ask_to_close()
 {
-    echo "Close the opening window(s) when you're done."
-    $@
-    printf "Continuing execution!\n\n"
+    echo "Please close the new window(s) when you're done."
+    $@ > /dev/null 2>&1
+    printf "Windows closed, continuing execution!\n\n"
     sleep 0.5
 }
 
@@ -92,7 +90,7 @@ done
 # TODO Check if ~/.zshrc already exists, back up if yes. For all existing config files, use local backup folder
 #ln -s "$CONFIG_FOLDER"/zshrc ~/.zshrc
 
-# TODO neovim configuration
+# TODO neovim configuration. Use vimrc!
 
 # TODO Consider doing the following in a loop
 echo "Choose your development language"
