@@ -2,7 +2,6 @@
 
 set -eu
 
-# TODO add script that executes a command an prompts 'Close me when you're done'
 # TODO make programs such as gnome-tweaks, settings etc. silent (no command line output)
 
 prompt_message_and_wait_for_input()
@@ -10,6 +9,14 @@ prompt_message_and_wait_for_input()
     echo "$1"
     sleep 0.5
     read -p "Waiting for you to press [enter]..." DUMMY_VARIABLE
+    printf "Continuing execution!\n\n"
+    sleep 0.5
+}
+
+run_command_and_ask_to_close()
+{
+    echo "Close the opening window(s) when you're done."
+    $@
     printf "Continuing execution!\n\n"
     sleep 0.5
 }
@@ -30,16 +37,16 @@ else
     echo " 1. To use the nice dark mode in your OS, change Appearance->Themes->Applications to 'Adwaita-dark'."
     echo " 2. Also consider changing your cursor appearance"
     echo " 3. Under Top Bar, enable date and week numbers"
-    echo " 4. Under 'Extensions', enable and configure openweather and System-monitor. Close me when you're done."
-    gnome-tweaks
+    echo " 4. Under 'Extensions', enable and configure openweather and System-monitor."
+    run_command_and_ask_to_close gnome-tweaks
 fi
 
-echo "Add a german, english, or other keyboard layout, if you like. Close me when you're done"
-gnome-control-center region
-echo "Fix your key repeat delay and rate by clicking 'Typing->Repeat Keys'. Be careful to not set the delay too low, and the rate too high. Experiment with the text editor on the side. Note: the speed slider is inverse! Pushing it leftwards means higher repeat rate. Close the windows if you're done."
-gedit & gnome-control-center universal-access
-echo "Fix your automatic suspend delays: click on 'Automatic suspend', then choose to your liking. Close when you're done."
-gnome-control-center power
+echo "Add a german, english, or other keyboard layout, if you like."
+run_command_and_ask_to_close gnome-control-center region
+echo "Fix your key repeat delay and rate by clicking 'Typing->Repeat Keys'. Be careful to not set the delay too low, and the rate too high. Experiment with the text editor on the side. Note: the speed slider is inverse! Pushing it leftwards means higher repeat rate."
+run_command_and_ask_to_close gedit & gnome-control-center universal-access
+echo "Fix your automatic suspend delays: click on 'Automatic suspend', then choose to your liking."
+run_command_and_ask_to_close gnome-control-center power
 
 # TODO Browser selection
 echo "Which browser should we install? (chromium/chrome/no_additional)?"
