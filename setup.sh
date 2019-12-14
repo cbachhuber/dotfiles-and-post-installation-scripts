@@ -1,17 +1,26 @@
 #!/bin/bash
 
+set -eu
+
 # Let the user clone this repo to any location
 DOTFILES_PATH="$( cd "$(dirname "$0")" ; pwd -P )"
 CONFIG_FOLDER=""$DOTFILES_PATH"/config"
 
 # OS tweaks
-sudo apt install -y gnome-tweaks gnome-shell-extension-weather gnome-shell-extension-system-monitor
-# TODO check if log out log in is required to see extensions in gnome-tweaks
-echo " 1. To use the nice dark mode in your OS, change Appearance->Themes->Applications to 'Adwaita-dark'."
-echo " 2. Also consider changing your cursor appearance"
-echo " 3. Under Top Bar, enable date and week numbers"
-echo " 4. Under 'Extensions', enable and configure openweather and System-monitor"
-gnome-tweaks
+GNOME_TWEAKS_INSTALLED=$(dpkg -l | grep gnome-tweaks | wc -l)  # gnome-tweaks is not part of the default Ubuntu packages: http://releases.ubuntu.com/bionic/ubuntu-18.04.3-desktop-amd64.manifest
+if [ $GNOME_TWEAKS_INSTALLED = 0 ]; then
+    sudo apt install -y gnome-tweaks gnome-shell-extension-weather gnome-shell-extension-system-monitor gnome-shell-extension-impatience
+    printf "Gnome extensions require a logout and login to become visible in gnome settings.
+    Please log out and in, and restart this script."
+    return 0
+else
+    echo "Welcome back! Let's continue with gnome extension settings."
+    echo " 1. To use the nice dark mode in your OS, change Appearance->Themes->Applications to 'Adwaita-dark'."
+    echo " 2. Also consider changing your cursor appearance"
+    echo " 3. Under Top Bar, enable date and week numbers"
+    echo " 4. Under 'Extensions', enable and configure openweather and System-monitor"
+    gnome-tweaks
+fi
 
 echo "Add a german, english, or other keyboard layout, if you like"
 gnome-control-center region
@@ -53,9 +62,6 @@ git config --global core.editor 'vim'  # more handy than nano when closing with 
 git config --global core.excludesFile "$CONFIG_FOLDER"/global_gitignore
 echo "[include]
 	path = /home/$(whoami)/.dotfiles/config/gitconfig" >> ~/.gitconfig  # $HOME expansion not supported in gitconfig, need absolute path
-
-
-# TODO bash/zsh aliases
 
 # TODO zsh setup (default shell) and configuration
 # TODO Check if ~/.zshrc already exists, back up if yes. For all existing config files, use local backup folder
