@@ -11,7 +11,7 @@ GNOME_TWEAKS_INSTALLED=$(dpkg -l | grep gnome-tweaks | wc -l)  # gnome-tweaks is
 if [ $GNOME_TWEAKS_INSTALLED = 0 ]; then
     sudo apt install -y gnome-tweaks gnome-shell-extension-weather gnome-shell-extension-system-monitor gnome-shell-extension-impatience
     printf "Gnome extensions require a logout and login to become visible in gnome settings.
-    Please log out and in, and restart this script."
+    Please log out and back in, and restart this script."
     return 0
 else
     echo "Welcome back! Let's continue with gnome extension settings."
@@ -56,12 +56,20 @@ echo "Enter your git mail address:"
 read GIT_MAIL
 git config --global user.name $GIT_NAME
 git config --global user.email $GIT_MAIL
-# TODO make the following optional
 git config --global core.pager 'less -F -X'  # use less only if you output does not fit to the screen
-git config --global core.editor 'vim'  # more handy than nano when closing with 'ZZ' (discard with ':cq')
 git config --global core.excludesFile "$CONFIG_FOLDER"/global_gitignore
 echo "[include]
 	path = /home/$(whoami)/.dotfiles/config/gitconfig" >> ~/.gitconfig  # $HOME expansion not supported in gitconfig, need absolute path
+
+# Git Editor
+while true; do
+read -p "Would you like to use vim as git editor? (y/n) " yn
+case $yn in
+    [Yy]* ) git config --global core.editor 'vim'; break;;  # more handy than nano when closing with 'ZZ' (discard with ':cq')
+    [Nn]* ) echo "Not installing"; break;;
+    * ) echo "Please answer yes or no.";;
+esac
+done
 
 # TODO zsh setup (default shell) and configuration
 # TODO Check if ~/.zshrc already exists, back up if yes. For all existing config files, use local backup folder
