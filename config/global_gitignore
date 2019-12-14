@@ -3,3 +3,10 @@
 
 # My preference: in each repo, have the ability to put stuff there without cluttering my 'git status'
 my_stuff/
+
+# Ignore python virtual environments
+venv/
+
+# Ignore build directories
+build/
+cmake-build-dir/
