@@ -120,22 +120,22 @@ eval `dircolors ~/.dir_colors/dircolors`
 # Syntax highlighting
 source /home/chris/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Augtosuggestions
+# ZSH Augtosuggestions
 #source /home/chris/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-
-# List directory contents upon change to
+# List directory contents upon change to it
 cl () {cd "$@" && ll}
 
 # Proper df and du output
 alias df='df -h -x squashfs -x tmpfs -x devtmpfs'
 alias du1='du -hd 1'
-bindkey '^ ' autosuggest-execute  # Executes a suggestion on ctrl+space
 
+# ZSH config
+bindkey '^ ' autosuggest-execute  # Executes a suggestion on ctrl+space
 bindkey "^[[5~" history-beginning-search-backward  # pg-up
 bindkey "^[[6~" history-beginning-search-forward  # pg-dn
 
