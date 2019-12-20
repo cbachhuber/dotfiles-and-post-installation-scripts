@@ -2,9 +2,9 @@
 
 Tested for Ubuntu 18.04 LTS. The script and config files in this folder allow you to quickly set up your Ubuntu installation with a reasonable developer configuration.
 
-I suggest cloning this repository to ~/.dotfiles, though any other location will work as well. Just make sure to not move the folder after you started relying on the dotfiles in it.
-
 ## Downloading
+
+I suggest cloning this repository to ~/.dotfiles, though any other location will work as well. Just make sure to not move the folder after you started relying on the dotfiles in it.
 
 ```
 git clone git@github.com:cbachhuber/post-installation-and-dotfiles.git ~/.dotfiles
