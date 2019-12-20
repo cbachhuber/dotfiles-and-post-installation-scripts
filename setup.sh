@@ -28,6 +28,16 @@ while [[ $# -gt 0 ]]; do
         CONFIGURE_GIT=true
         shift # past argument
         ;;
+        -h|--help)
+        printf "Usage: $0 [-o] [-p] [-g]\n
+This script sets up your OS with a reasonable config and programs. 
+Via flags, you have the option to execute a subset of the script steps. 
+For more details, see README.md.\n
+-o      Walk through OS tweaks setup
+-p      Install programs
+-g      Git configuration\n"
+        exit 0
+        ;;
         *)    # unknown option
         POSITIONAL+=("$1") # save it in an array for later
         shift # past argument

@@ -28,3 +28,4 @@ By default, `setup.sh` will work through all setup steps such a OS tweaks, progr
 - Flag `-o` or `--os-tweaks` walks you through OS tweaking steps such as key repeat adjustment and configuration of gnome shell extensions
 - Flag `-p` or `--programs` installs programs such as chromium, vlc, gimp, and dev tools such as python3, terminator, git, and zsh.
 - Flag `-g` or `--configure-git` guides you through common git configuration steps such as setting up your git user name and mail, git pager, global excludesFile, and git aliases.
+- Flag `-h` or `--help` displays a help menu and exits the script
