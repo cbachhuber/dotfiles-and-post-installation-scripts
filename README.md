@@ -25,7 +25,8 @@ You will be asked to enter your sudo password for the apt operations.
 By default, `setup.sh` will work through all setup steps such a OS tweaks, program installation, git configuration etc. If you only want select a subset of these steps, use the below flags. As soon as a flag is given, the other steps are not implicitly executed, they need to be called explicitly per flag as well.
 
 
-- Flag `-o` or `--os-tweaks` walks you through OS tweaking steps such as key repeat adjustment and configuration of gnome shell extensions
+- Flag `-o` or `--os-tweaks` walks you through OS tweaking steps such as key repeat adjustment and configuration of gnome shell extensions.
 - Flag `-p` or `--programs` installs programs such as chromium, vlc, gimp, and dev tools such as python3, terminator, git, and zsh.
 - Flag `-g` or `--configure-git` guides you through common git configuration steps such as setting up your git user name and mail, git pager, global excludesFile, and git aliases.
-- Flag `-h` or `--help` displays a help menu and exits the script
+- Flag `-z` or `--configure-zsh` guides you through common zsh and oh-my-zsh configuration steps such as setting zsh as your default shell and installing oh-my-zsh plugins such as powerline10k and zsh-autosuggestions.
+- Flag `-h` or `--help` displays a help menu and exits the script.

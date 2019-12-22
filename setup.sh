@@ -7,6 +7,7 @@ set -eu
 OS_TWEAKS=false
 PROGRAMS=false
 CONFIGURE_GIT=false
+CONFIGURE_ZSH=false
 
 # Let the user clone this repo to any location
 DOTFILES_PATH="$( cd "$(dirname "$0")" ; pwd -P )"
@@ -28,14 +29,19 @@ while [[ $# -gt 0 ]]; do
         CONFIGURE_GIT=true
         shift # past argument
         ;;
+        -z|--configure-zsh)
+        CONFIGURE_ZSH=true
+        shift # past argument
+        ;;
         -h|--help)
-        printf "Usage: $0 [-o] [-p] [-g]\n
+        printf "Usage: $0 [-o] [-p] [-g] [-z]\n
 This script sets up your OS with a reasonable config and programs. 
 Via flags, you have the option to execute a subset of the script steps. 
 For more details, see README.md.\n
 -o      Walk through OS tweaks setup
 -p      Install programs
--g      Git configuration\n"
+-g      Git configuration
+-z      Oh-my-zsh configuration\n"
         exit 0
         ;;
         *)    # unknown option
@@ -46,10 +52,12 @@ For more details, see README.md.\n
 done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
-if [ "$OS_TWEAKS" = false ] && [ "$PROGRAMS" = false ] && [ "$CONFIGURE_GIT" = false ]; then
+if [ "$OS_TWEAKS" = false ] && [ "$PROGRAMS" = false ] && \
+   [ "$CONFIGURE_GIT" = false ] && [ $"CONFIGURE_ZSH" = false ]; then
     OS_TWEAKS=true
     PROGRAMS=true
     CONFIGURE_GIT=true
+    CONFIGURE_ZSH=true
 fi
 
 prompt_message_and_wait_for_input()
@@ -67,6 +75,25 @@ run_command_and_ask_to_close()
     $@ > /dev/null 2>&1
     printf "Windows closed, continuing execution!\n\n"
     sleep 0.5
+}
+
+ask_user_to_execute_command()
+{
+    if [ "$#" = 3 ]; then
+        QUESTION=$1
+        COMMAND=$2
+        NO_MESSAGE=$3
+        while true; do
+        read -p "$QUESTION (y/n) " yn
+        case $yn in
+            [Yy]* ) $COMMAND; break;;
+            [Nn]* ) echo "$NO_MESSAGE"; break;;
+            * ) echo "Please answer yes or no.";;
+        esac
+        done
+    else
+        echo "Call me as 'question' 'command to execute' 'Message if no is chosen'"
+    fi
 }
 
 
@@ -123,6 +150,7 @@ install_programs()
 configure_git()
 {
     echo "Configuring git"
+    sudo apt install -y git
     # Git configuration
     read -p "Enter your git user name: " GIT_NAME
     read -p "Enter your git mail address: " GIT_MAIL
@@ -134,26 +162,34 @@ configure_git()
     	path = /home/$(whoami)/.dotfiles/config/gitconfig" >> ~/.gitconfig  # $HOME expansion not supported in gitconfig, need absolute path
 
     # Git Editor
-    while true; do
-    read -p "Would you like to use vim as git editor? (y/n) " yn
-    case $yn in
-        [Yy]* ) git config --global core.editor 'vim'; break;;  # more handy than nano when closing with 'ZZ' (discard with ':cq')
-        [Nn]* ) echo "Not installing"; break;;
-        * ) echo "Please answer yes or no.";;
-    esac
-    done
+    ask_user_to_execute_command "Would you like to use vim as git editor?" "git config --global core.editor 'vim'" "Not using vim as git editor" # more handy than nano when closing with 'ZZ' (discard with ':cq')
+}
+
+configure_oh_my_zsh()
+{
+    echo "Configuring Oh-my-zsh"
+    sudo apt install -y zsh wget
+
+    # ZSH as default shell
+    ask_user_to_execute_command "Would you like to use ZSH as your default shell?" "chsh -s $(which zsh)" "Not using ZSH as default shell."
+
+    # Download oh-my-zsh
+    sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+    # TODO Plugins
+    # TODO Check if ~/.zshrc already exists, back up if yes. For all existing config files, use local backup folder: .dotfiles/my_stuff/backups/zshrc
+    #ln -s "$CONFIG_FOLDER"/zshrc ~/.zshrc
 }
 
 if [ "$OS_TWEAKS" = true ]; then walk_through_os_tweaks; fi
 if [ "$PROGRAMS" = true ]; then install_programs; fi
 if [ "$CONFIGURE_GIT" = true ]; then configure_git; fi
-
-# TODO zsh setup (default shell) and configuration
-# TODO Check if ~/.zshrc already exists, back up if yes. For all existing config files, use local backup folder: .dotfiles/my_stuff/backups/zshrc
-#ln -s "$CONFIG_FOLDER"/zshrc ~/.zshrc
+if [ "$CONFIGURE_ZSH" = true ]; then configure_oh_my_zsh; fi
 
 # TODO neovim configuration. Use vimrc!
 
 # TODO Consider doing the following in a loop
 echo "Choose your development language"
 echo "Choose your C++ IDE"
+
+exit 0
