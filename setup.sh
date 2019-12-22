@@ -176,9 +176,18 @@ configure_oh_my_zsh()
     # Download oh-my-zsh
     sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-    # TODO Plugins
-    # TODO Check if ~/.zshrc already exists, back up if yes. For all existing config files, use local backup folder: .dotfiles/my_stuff/backups/zshrc
-    #ln -s "$CONFIG_FOLDER"/zshrc ~/.zshrc
+    # Use oh-my-zsh to install zsh plugins
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+    if [ -f ~/.zshrc ]; then
+        echo "Backing up old zshrc to $DOTFILES_PATH/backups/zshrc"
+        mkdir -p "$DOTFILES_PATH"/backups
+        mv ~/.zshr "$DOTFILES_PATH"/backups/zshrc
+    fi
+
+    ln -s "$CONFIG_FOLDER"/zshrc ~/.zshrc
 }
 
 if [ "$OS_TWEAKS" = true ]; then walk_through_os_tweaks; fi

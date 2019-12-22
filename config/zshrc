@@ -76,7 +76,7 @@ CASE_SENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions vi-mode)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -105,20 +105,9 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-
-eval $(thefuck --alias)
-# You can use whatever you want as an alias, like for Mondays:
-eval $(thefuck --alias FUCK)
-
-# Solarized color
-eval `dircolors ~/.dir_colors/dircolors`
 
 # Remove hostname from beginning of every line
 #prompt_context() {}
-
-# Syntax highlighting
-source /home/$(whoami)/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # ZSH Augtosuggestions
 #source /home/$(whoami)/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -135,8 +124,9 @@ alias df='df -h -x squashfs -x tmpfs -x devtmpfs'
 alias du1='du -hd 1'
 
 # ZSH config
+bindkey -v
+bindkey "^R" history-incremental-search-backward  # Overwrite vim's ctrl+r for backward search
 bindkey '^ ' autosuggest-execute  # Executes a suggestion on ctrl+space
 bindkey "^[[5~" history-beginning-search-backward  # pg-up
 bindkey "^[[6~" history-beginning-search-forward  # pg-dn
-
 
