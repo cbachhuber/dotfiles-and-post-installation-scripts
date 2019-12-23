@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ "$EUID" = 0 ]; then
+  echo "Please call me without 'sudo'. The files created in this script otherwise have messed up access rights."
+  exit 1
+fi
+
 set -eu
 
 # TODO split me up into sub functions, called from separate scripts
