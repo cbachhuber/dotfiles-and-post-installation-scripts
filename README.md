@@ -7,7 +7,7 @@ Tested for Ubuntu 18.04 LTS. The script and config files in this folder allow yo
 I suggest cloning this repository to ~/.dotfiles, though any other location will work as well. Just make sure to not move the folder after you started relying on the dotfiles in it.
 
 ```
-git clone git@github.com:cbachhuber/post-installation-and-dotfiles.git ~/.dotfiles
+git clone https://github.com/cbachhuber/dotfiles-and-post-installation-scripts.git ~/.dotfiles
 ```
 
 ## Installation
