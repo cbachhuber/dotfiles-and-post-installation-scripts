@@ -64,7 +64,7 @@ done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
 if [ "$OS_TWEAKS" = false ] && [ "$PROGRAMS" = false ] && \
-   [ "$CONFIGURE_GIT" = false ] && [ $"CONFIGURE_ZSH" = false ] && \
+   [ "$CONFIGURE_GIT" = false ] && [ "$CONFIGURE_ZSH" = false ] && \
    [ "$CONFIGURE_VIM" = false ]; then
     OS_TWEAKS=true
     PROGRAMS=true
