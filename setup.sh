@@ -12,6 +12,7 @@ set -eu
 OS_TWEAKS=false
 PROGRAMS=false
 CONFIGURE_GIT=false
+CONFIGURE_VIM=false
 CONFIGURE_ZSH=false
 
 # Let the user clone this repo to any location
@@ -34,18 +35,23 @@ while [[ $# -gt 0 ]]; do
         CONFIGURE_GIT=true
         shift # past argument
         ;;
+        -v|--configure-vim)
+        CONFIGURE_VIM=true
+        shift # past argument
+        ;;
         -z|--configure-zsh)
         CONFIGURE_ZSH=true
         shift # past argument
         ;;
         -h|--help)
-        printf "Usage: $0 [-o] [-p] [-g] [-z]\n
+        printf "Usage: $0 [-o] [-p] [-g] [-z] [-v]\n
 This script sets up your OS with a reasonable config and programs. 
 Via flags, you have the option to execute a subset of the script steps. 
 For more details, see README.md.\n
 -o      Walk through OS tweaks setup
 -p      Install programs
 -g      Git configuration
+-v      Neovim configuration
 -z      Oh-my-zsh configuration\n"
         exit 0
         ;;
@@ -58,11 +64,13 @@ done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
 if [ "$OS_TWEAKS" = false ] && [ "$PROGRAMS" = false ] && \
-   [ "$CONFIGURE_GIT" = false ] && [ $"CONFIGURE_ZSH" = false ]; then
+   [ "$CONFIGURE_GIT" = false ] && [ $"CONFIGURE_ZSH" = false ] && \
+   [ "$CONFIGURE_VIM" = false ]; then
     OS_TWEAKS=true
     PROGRAMS=true
     CONFIGURE_GIT=true
     CONFIGURE_ZSH=true
+    CONFIGURE_VIM=true
 fi
 
 prompt_message_and_wait_for_input()
@@ -170,6 +178,28 @@ configure_git()
     ask_user_to_execute_command "Would you like to use vim as git editor?" "git config --global core.editor 'vim'" "Not using vim as git editor" # more handy than nano when closing with 'ZZ' (discard with ':cq')
 }
 
+configure_neovim()
+{
+    echo "Configuring NeoVim"
+    sudo apt install -y neovim
+
+    # Linking nvim to ~/.zshrc
+    mkdir -p ~/.config/nvim
+    touch ~/.config/nvim/init.vim
+    echo "set runtimepath^=~/.vim runtimepath+=~/.vim/after
+let &packpath = &runtimepath
+source ~/.vimrc" > ~/.config/nvim/init.vim
+
+    if [ -f ~/.vimrc ]; then
+        echo "Backing up old vimrc to $DOTFILES_PATH/backups/vimrc"
+        mkdir -p "$DOTFILES_PATH"/backups
+        mv ~/.vimrc "$DOTFILES_PATH"/backups/vimrc
+    fi
+    ln -s ~/.dotfiles/config/vimrc ~/.vimrc
+
+    vim -c 'PlugInstall|q|q'  # Using vim-plug to install plugins from vimrc. Then, quit vim
+}
+
 configure_oh_my_zsh()
 {
     echo "Configuring Oh-my-zsh"
@@ -189,7 +219,7 @@ configure_oh_my_zsh()
     if [ -f ~/.zshrc ]; then
         echo "Backing up old zshrc to $DOTFILES_PATH/backups/zshrc"
         mkdir -p "$DOTFILES_PATH"/backups
-        mv ~/.zshr "$DOTFILES_PATH"/backups/zshrc
+        mv ~/.zshrc "$DOTFILES_PATH"/backups/zshrc
     fi
 
     ln -s "$CONFIG_FOLDER"/zshrc ~/.zshrc
@@ -198,9 +228,8 @@ configure_oh_my_zsh()
 if [ "$OS_TWEAKS" = true ]; then walk_through_os_tweaks; fi
 if [ "$PROGRAMS" = true ]; then install_programs; fi
 if [ "$CONFIGURE_GIT" = true ]; then configure_git; fi
+if [ "$CONFIGURE_VIM" = true ]; then configure_neovim; fi
 if [ "$CONFIGURE_ZSH" = true ]; then configure_oh_my_zsh; fi
-
-# TODO neovim configuration. Use vimrc!
 
 # TODO Consider doing the following in a loop
 echo "Choose your development language"

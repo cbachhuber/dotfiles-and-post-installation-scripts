@@ -28,5 +28,6 @@ By default, `setup.sh` will work through all setup steps such a OS tweaks, progr
 - Flag `-o` or `--os-tweaks` walks you through OS tweaking steps such as key repeat adjustment and configuration of gnome shell extensions.
 - Flag `-p` or `--programs` installs programs such as chromium, vlc, gimp, and dev tools such as python3, terminator, git, and zsh.
 - Flag `-g` or `--configure-git` guides you through common git configuration steps such as setting up your git user name and mail, git pager, global excludesFile, and git aliases.
+- Flag `-v` or `--configure-vim` guides you through common [neovim](https://github.com/neovim/neovim) configuration steps such as sourcing `~/.zshrc` and installing essential plugins such as [vim-fugitive](https://github.com/tpope/vim-fugitive), [vim-airline](https://github.com/vim-airline/vim-airline), and [vim-nerdtree](https://github.com/scrooloose/nerdtree).
 - Flag `-z` or `--configure-zsh` guides you through common zsh and oh-my-zsh configuration steps such as setting zsh as your default shell and installing oh-my-zsh plugins such as [Powerlevel 10k](https://github.com/romkatv/powerlevel10k) and zsh-autosuggestions.
 - Flag `-h` or `--help` displays a help menu and exits the script.

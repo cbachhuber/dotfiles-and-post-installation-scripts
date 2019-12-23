@@ -1,0 +1,69 @@
+set number                              " Show line numbers
+set linebreak                           " Break lines at word (requires Wrap lines)
+set showbreak=+++                       " Wrap-broken line prefix
+"set textwidth=100                       " Line wrap (number of cols)
+set showmatch                           " Highlight matching brace
+"set spell                               " Enable spell-checking
+
+set hlsearch                            " Highlight all search results
+set smartcase                           " Enable smart-case search
+set ignorecase                          " Always case-insensitive
+set incsearch                           " Searches for strings incrementally
+
+set autoindent                          " Auto-indent new lines
+set expandtab                           " Use spaces instead of tabs
+set shiftwidth=4                        " Number of auto-indent spaces
+set smartindent                         " Enable smart-indent
+set smarttab                            " Enable smart-tabs
+set softtabstop=4                       " Number of spaces per Tab
+
+set list                                " Show invisible chars but whitespace
+set listchars=tab:>-,trail:~,extends:>,precedes:<
+
+" Advanced
+set ruler                               " Show row and column ruler information
+
+set undolevels=1000                     " Number of undo levels
+set backspace=indent,eol,start          " Backspace behaviour
+
+
+call plug#begin()
+
+" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+Plug 'junegunn/vim-easy-align'
+
+" Any valid git URL is allowed
+Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+
+" Multiple Plug commands can be written in a single line using | separators
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+
+" On-demand loading
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+
+" Using a non-master branch
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+
+" Plugin options
+Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
+
+" Plugin outside ~/.vim/plugged with post-update hook
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+Plug 'tpope/vim-fugitive'
+
+Plug 'scrooloose/syntastic'
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+Plug 'airblade/vim-gitgutter'
+
+call plug#end()
+
+let g:airline_powerline_fonts = 1
+noremap <silent> <C-S>          :update<CR>
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
+
