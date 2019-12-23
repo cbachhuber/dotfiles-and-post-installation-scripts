@@ -1,13 +1,13 @@
 #!/bin/bash
 
+set -eu
+
 if [ "$EUID" = 0 ]; then
   echo "Please call me without 'sudo'. The files created in this script otherwise have messed up access rights."
   exit 1
 fi
 
-set -eu
-
-# TODO split me up into sub functions, called from separate scripts
+# TODO split me up into separate scripts
 
 OS_TWEAKS=false
 PROGRAMS=false
@@ -158,6 +158,10 @@ install_programs()
     sudo apt install -y neovim zsh git terminator curl python3-dev python3-pip python3-setuptools build-essential cmake libgtest-dev tree
     sudo apt install -y powerline fonts-powerline
     prompt_message_and_wait_for_input "Let terminator show more lines: open terminator, right-click into the empty space, click 'Preferences->Profile->Scrolling'. Under 'Scrollback', set the number of lines to something more reasonable, e.g. 5000 lines."
+    ask_user_to_execute_command "Install CLion using snap?" "sudo snap install clion --classic" "Skipping CLion"
+    ask_user_to_execute_command "Install PyCharm CE using snap?" "sudo snap install pycharm-community --classic" "Skipping PyCharm CE"
+    ask_user_to_execute_command "Install Atom using snap?" "sudo snap install atom --classic" "Skipping Atom"
+    ask_user_to_execute_command "Install Visual Studio Code using snap?" "sudo snap install code --classic" "Skipping VS Code"
 }
 
 configure_git()
@@ -190,6 +194,7 @@ configure_neovim()
 let &packpath = &runtimepath
 source ~/.vimrc" > ~/.config/nvim/init.vim
 
+    # Backing up old vimrc, symlinking to vimrc of this repo
     if [ -f ~/.vimrc ]; then
         echo "Backing up old vimrc to $DOTFILES_PATH/backups/vimrc"
         mkdir -p "$DOTFILES_PATH"/backups
@@ -216,6 +221,7 @@ configure_oh_my_zsh()
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
+    # Backing up old zshrc, symlinking to zshrc of this repo
     if [ -f ~/.zshrc ]; then
         echo "Backing up old zshrc to $DOTFILES_PATH/backups/zshrc"
         mkdir -p "$DOTFILES_PATH"/backups
@@ -231,8 +237,5 @@ if [ "$CONFIGURE_GIT" = true ]; then configure_git; fi
 if [ "$CONFIGURE_VIM" = true ]; then configure_neovim; fi
 if [ "$CONFIGURE_ZSH" = true ]; then configure_oh_my_zsh; fi
 
-# TODO Consider doing the following in a loop
-echo "Choose your development language"
-echo "Choose your C++ IDE"
-
 exit 0
+
