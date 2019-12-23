@@ -139,6 +139,9 @@ walk_through_os_tweaks()
 install_programs()
 {
     echo "Installing recommended programs"
+
+    sudo apt update && sudo apt upgrade
+
     # TODO Browser selection
     echo "Which browser should we install? (chromium/chrome/no_additional)?"
     sudo apt install -y chromium-browser
