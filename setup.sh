@@ -188,14 +188,18 @@ configure_git()
 configure_neovim()
 {
     echo "Configuring NeoVim"
-    sudo apt install -y neovim
+    sudo apt install -y neovim curl
 
-    # Linking nvim to ~/.zshrc
+    # Linking nvim to ~/.vimrc
     mkdir -p ~/.config/nvim
     touch ~/.config/nvim/init.vim
     echo "set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 source ~/.vimrc" > ~/.config/nvim/init.vim
+
+    # Install vim-plug
+    curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
     # Backing up old vimrc, symlinking to vimrc of this repo
     if [ -f ~/.vimrc ]; then
