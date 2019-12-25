@@ -13,10 +13,10 @@ sudo usermod -aG docker $USER  # Requires log out and re-log in to take effect
 ```
 
 ## Build and run the test container
-Build the docker container from the `Dockerfile` in this directory. The user in the docker is called `testuser` and has sudo password `a`.
+Build the docker container from the `Dockerfile` in this directory. The user in the docker is called `testuser` and has sudo password `a`. This repository is already cloned to ~/.dotfiles when building the container.
 
 ```
 cd ~/.dotfiles/test
-docker image build -t test-ubuntu:1.0 .
-docker container run -it test-ubuntu:1.0
+docker image build -t -e DISPLAY=$DISPLAY  test-ubuntu:1.0 .
+docker container run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix test-ubuntu:1.0
 ```
