@@ -1,6 +1,6 @@
 # Testing
 
-As we provide functionality for installing programs, working in GUIs etc, we resort to manual testing inside a docker container. On your machine, perform the following steps to create the docker test container, which is running Ubuntu 18.04.
+As we provide functionality for installing programs, lots of user interaction, and working in GUIs etc, we resort to manual testing inside a docker container. On your machine, perform the following steps to create the docker test container, which is running Ubuntu 18.04.
 
 
 ## Set up docker
@@ -20,3 +20,6 @@ cd ~/.dotfiles/test
 docker image build -t -e DISPLAY=$DISPLAY  test-ubuntu:1.0 .
 docker container run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix test-ubuntu:1.0
 ```
+
+## TODOs
+- Investigate shUnit2 and bats for automated tests
