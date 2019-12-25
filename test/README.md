@@ -17,7 +17,7 @@ Build the docker container from the `Dockerfile` in this directory. The user in 
 
 ```
 cd ~/.dotfiles/test
-docker image build -t -e DISPLAY=$DISPLAY  test-ubuntu:1.0 .
+docker image build -t test-ubuntu:1.0 .
 docker container run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix test-ubuntu:1.0
 ```
 
