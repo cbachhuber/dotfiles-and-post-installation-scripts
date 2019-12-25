@@ -1,7 +1,7 @@
 FROM ubuntu:18.04 as base
 
 RUN apt update
-RUN apt update
+RUN apt upgrade
 RUN apt install -y git sudo
 
 RUN useradd -ms /bin/bash testuser && echo "testuser:a" | chpasswd && adduser testuser sudo
