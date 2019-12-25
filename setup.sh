@@ -217,11 +217,9 @@ configure_oh_my_zsh()
     echo "Configuring Oh-my-zsh"
     sudo apt install -y zsh wget
 
-    # ZSH as default shell
-    ask_user_to_execute_command "Would you like to use ZSH as your default shell?" "chsh -s $(which zsh)" "Not using ZSH as default shell."
-
-    # Download oh-my-zsh
-    sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    # Download and install oh-my-zsh, but do not yet run it (would break this script)
+    RUNZSH=no sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    ZSH_CUSTOM=/home/$(whoami)/.oh-my-zsh/custom
 
     # Use oh-my-zsh to install zsh plugins
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
@@ -236,6 +234,7 @@ configure_oh_my_zsh()
     fi
 
     ln -s "$CONFIG_FOLDER"/zshrc ~/.zshrc
+    echo "Feel free to try out zsh by opening a new terminal (if you made zsh your default shell), or by executing 'zsh' in this terminal. powerlevel10k will ask you a couple of questions on the first zsh start."
 }
 
 if [ "$OS_TWEAKS" = true ]; then walk_through_os_tweaks; fi
