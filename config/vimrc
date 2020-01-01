@@ -1,3 +1,5 @@
+" Kudos to Markus Hofbauer for his vimrc. Many of the below settings were taking from https://github.com/hofbi/dotfiles/blob/master/links/.vimrc
+
 set number                              " Show line numbers
 set linebreak                           " Break lines at word (requires Wrap lines)
 set showbreak=+++                       " Wrap-broken line prefix
