@@ -174,8 +174,8 @@ configure_git()
     # Git configuration
     read -p "Enter your git user name (your full name, e.g. 'Max Maier': " GIT_NAME
     read -p "Enter your git mail address: " GIT_MAIL
-    git config --global user.name $GIT_NAME
-    git config --global user.email $GIT_MAIL
+    git config --global user.name "$GIT_NAME"
+    git config --global user.email "$GIT_MAIL"
     git config --global core.pager 'less -F -X'  # use less only if you output does not fit to the screen
     git config --global core.excludesFile "$CONFIG_FOLDER"/global_gitignore
     echo "[include]
