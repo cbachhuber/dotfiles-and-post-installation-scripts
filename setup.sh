@@ -172,7 +172,7 @@ configure_git()
     echo "Configuring git"
     sudo apt install -y git
     # Git configuration
-    read -p "Enter your git user name: " GIT_NAME
+    read -p "Enter your git user name (your full name, e.g. 'Max Maier': " GIT_NAME
     read -p "Enter your git mail address: " GIT_MAIL
     git config --global user.name $GIT_NAME
     git config --global user.email $GIT_MAIL
