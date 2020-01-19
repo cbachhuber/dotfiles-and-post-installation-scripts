@@ -215,7 +215,7 @@ source ~/.vimrc" > ~/.config/nvim/init.vim
 configure_oh_my_zsh()
 {
     echo "Configuring Oh-my-zsh"
-    sudo apt install -y zsh wget
+    sudo apt install -y zsh wget powerline
 
     # Download and install oh-my-zsh, but do not yet run it (would break this script)
     RUNZSH=no sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
