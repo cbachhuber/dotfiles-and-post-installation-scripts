@@ -209,7 +209,8 @@ source ~/.vimrc" > ~/.config/nvim/init.vim
     fi
     ln -s ~/.dotfiles/config/vimrc ~/.vimrc
 
-    vim -c 'PlugInstall|q|q'  # Using vim-plug to install plugins from vimrc. Then, quit vim
+    nvim -c 'PlugInstall|q|q'  # Using vim-plug to install plugins from vimrc. Then, quit vim
+    ask_user_to_execute_command "Remove old vim installation (the more modern neovim will be your new 'vim' alias)?" "sudo apt purge -y vim" "Skipping vim removal"
 }
 
 configure_oh_my_zsh()
