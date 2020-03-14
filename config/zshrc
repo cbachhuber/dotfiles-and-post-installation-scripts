@@ -118,6 +118,11 @@ cl () {cd "$@" && ll}
 alias df='df -h -x squashfs -x tmpfs -x devtmpfs'
 alias du1='du -hd 1'
 
+alias q='exit'
+alias sd='sudo shutdown now'
+alias rb='sudo reboot now'
+alias sapt='sudo apt'
+
 # ZSH config
 bindkey -v
 bindkey "^R" history-incremental-search-backward  # Overwrite vim's ctrl+r for backward search
