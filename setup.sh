@@ -157,7 +157,7 @@ install_programs()
     # TODO fix imagemagick permissions
 
     # Other tools
-    sudo apt install -y unrar htop iotop bmon
+    sudo apt install -y p7zip-full htop iotop bmon
 
     # Essential dev tools
     sudo apt install -y neovim zsh git terminator curl python3-dev python3-pip python3-setuptools build-essential cmake libgtest-dev tree
