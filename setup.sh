@@ -131,7 +131,8 @@ walk_through_os_tweaks()
     echo "Add a german, english, or other keyboard layout, if you like."
     run_command_and_ask_to_close gnome-control-center region
     echo "Fix your key repeat delay and rate by clicking 'Typing->Repeat Keys'. Be careful to not set the delay too low, and the rate too high. Experiment with the text editor on the side. Note: the speed slider is inverse! Pushing it leftwards means higher repeat rate."
-    run_command_and_ask_to_close gedit & gnome-control-center universal-access
+    gedit > /dev/null 2>&1 &
+    run_command_and_ask_to_close gnome-control-center universal-access
     echo "Fix your automatic suspend delays: click on 'Automatic suspend', then choose to your liking."
     run_command_and_ask_to_close gnome-control-center power
     echo "Consider enabling 'Night Light' (at the bottom of the settings menu). It reduces blue light during dark hours. Comfortable and healthy!"
