@@ -97,9 +97,10 @@ ask_user_to_execute_command()
         COMMAND=$2
         NO_MESSAGE=$3
         while true; do
-        read -p "$QUESTION (y/n) " yn
+        read -p "$QUESTION [Y/n] " yn
         case $yn in
             [Yy]* ) $COMMAND; break;;
+            "" )    $COMMAND; break;;  # Default choice: execute command
             [Nn]* ) echo "$NO_MESSAGE"; break;;
             * ) echo "Please answer yes or no.";;
         esac
