@@ -147,15 +147,13 @@ install_programs()
     sudo apt update && sudo apt upgrade
 
     # TODO Browser selection
-    echo "Which browser should we install? (chromium/chrome/no_additional)?"
-    sudo apt install -y chromium-browser
+    ask_user_to_execute_command "Install chromium?" "sudo apt install -y chromium-browser" "Skipping chromium"
 
     # Media playback and recording
     sudo apt install -y vlc kazam ubuntu-restricted-extras
 
     # Image and graphics tools
-    echo "Install gimp and inkscape?"
-    sudo apt install -y gimp inkscape imagemagick
+    ask_user_to_execute_command "Install gimp, inkscape, imagemagick?" "sudo apt install -y gimp inkscape imagemagick" "Skipping image processing tools"
     # TODO fix imagemagick permissions
 
     # Other tools
