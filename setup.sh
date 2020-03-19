@@ -117,7 +117,7 @@ walk_through_os_tweaks()
     if [ $GNOME_TWEAKS_INSTALLED = 0 ]; then
         sudo apt install -y gnome-tweaks gnome-shell-extension-weather gnome-shell-extension-system-monitor gnome-shell-extension-impatience
         printf "Gnome extensions require a logout and login to become visible in gnome settings.
-        Please log out and back in, and restart this script."
+        Please log out and back in, and restart this script.\n\n"
         return 0
     else
         echo "Welcome back! Let's continue with gnome extension settings."
