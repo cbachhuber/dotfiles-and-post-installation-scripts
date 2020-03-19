@@ -134,6 +134,8 @@ walk_through_os_tweaks()
     run_command_and_ask_to_close gedit & gnome-control-center universal-access
     echo "Fix your automatic suspend delays: click on 'Automatic suspend', then choose to your liking."
     run_command_and_ask_to_close gnome-control-center power
+    echo "Consider enabling 'Night Light' (at the bottom of the settings menu). It reduces blue light during dark hours. Comfortable and healthy!"
+    run_command_and_ask_to_close gnome-control-center display
 }
 
 install_programs()
