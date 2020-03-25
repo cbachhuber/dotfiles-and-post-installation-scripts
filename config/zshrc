@@ -130,3 +130,14 @@ bindkey '^ ' autosuggest-execute  # Executes a suggestion on ctrl+space
 bindkey "^[[5~" history-beginning-search-backward  # pg-up
 bindkey "^[[6~" history-beginning-search-forward  # pg-dn
 
+# This speeds up pasting w/ autosuggest
+# https://github.com/zsh-users/zsh-autosuggestions/issues/238
+pasteinit() {
+  OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
+  zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
+}
+pastefinish() {
+  zle -N self-insert $OLD_SELF_INSERT
+}
+zstyle :bracketed-paste-magic paste-init pasteinit
+zstyle :bracketed-paste-magic paste-finish pastefinish
