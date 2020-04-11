@@ -14,6 +14,7 @@ PROGRAMS=false
 CONFIGURE_GIT=false
 CONFIGURE_VIM=false
 CONFIGURE_ZSH=false
+CONFIGURE_KDE=false
 
 # Let the user clone this repo to any location
 DOTFILES_PATH="$( cd "$(dirname "$0")" ; pwd -P )"
@@ -23,16 +24,20 @@ POSITIONAL=()
 while [[ $# -gt 0 ]]; do
     key="$1"
     case $key in
+        -g|--configure-git)
+        CONFIGURE_GIT=true
+        shift # past argument
+        ;;
+        -k|--install-kde)
+        CONFIGURE_KDE=true
+        shift # past argument
+        ;;
         -o|--os-tweaks)
         OS_TWEAKS=true
         shift # past argument
         ;;
         -p|--programs)
         PROGRAMS=true
-        shift # past argument
-        ;;
-        -g|--configure-git)
-        CONFIGURE_GIT=true
         shift # past argument
         ;;
         -v|--configure-vim)
@@ -65,12 +70,13 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 
 if [ "$OS_TWEAKS" = false ] && [ "$PROGRAMS" = false ] && \
    [ "$CONFIGURE_GIT" = false ] && [ "$CONFIGURE_ZSH" = false ] && \
-   [ "$CONFIGURE_VIM" = false ]; then
+   [ "$CONFIGURE_VIM" = false ] && [ "CONFIGURE_KDE" = false ]; then
     OS_TWEAKS=true
     PROGRAMS=true
     CONFIGURE_GIT=true
-    CONFIGURE_ZSH=true
+    CONFIGURE_KDE=true
     CONFIGURE_VIM=true
+    CONFIGURE_ZSH=true
 fi
 
 prompt_message_and_wait_for_input()
@@ -240,9 +246,15 @@ configure_oh_my_zsh()
     echo "Feel free to try out zsh by opening a new terminal (if you made zsh your default shell), or by executing 'zsh' in this terminal. powerlevel10k will ask you a couple of questions on the first zsh start."
 }
 
+configure_kde()
+{
+    sudo apt install kde-full
+}
+
 if [ "$OS_TWEAKS" = true ]; then walk_through_os_tweaks; fi
 if [ "$PROGRAMS" = true ]; then install_programs; fi
 if [ "$CONFIGURE_GIT" = true ]; then configure_git; fi
+if [ "$CONFIGURE_KDE" = true ]; then configure_kde; fi
 if [ "$CONFIGURE_VIM" = true ]; then configure_neovim; fi
 if [ "$CONFIGURE_ZSH" = true ]; then configure_oh_my_zsh; fi
 
