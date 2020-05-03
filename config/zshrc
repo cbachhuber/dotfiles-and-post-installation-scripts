@@ -119,8 +119,8 @@ alias df='df -h -x squashfs -x tmpfs -x devtmpfs'
 alias du1='du -hd 1'
 
 alias q='exit'
-alias sd='sudo shutdown now'
-alias rb='sudo reboot now'
+alias sd='sudo shutdown now'  # Consider adding yourself to sudoers for this command: https://askubuntu.com/a/159009/1031154
+alias rb='sudo reboot now'  # Consider adding yourself to sudoers for this command: https://askubuntu.com/a/159009/1031154
 alias sapt='sudo apt'
 
 # ZSH config
