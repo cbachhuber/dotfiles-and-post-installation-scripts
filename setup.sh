@@ -30,8 +30,7 @@ while [[ $# -gt 0 ]]; do
             OS_TWEAKS=true
             shift # past argument
             ;;
-        -p | --programs)
-            PROGRAMS=true
+        -p | --programs) PROGRAMS=true
             shift # past argument
             ;;
         -g | --configure-git)
