@@ -9,8 +9,6 @@ jobs:
     steps:
     - name: Check out Git repository
       uses: actions/checkout@v2
-    - name: Install Snapcraft
-      uses: samuelmeuli/action-snapcraft@v1
     - name: Install shfmt
       run: sudo snap install shfmt
     - name: Check shell script formatting
