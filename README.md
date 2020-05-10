@@ -1,5 +1,7 @@
 # Ubuntu Post Installation Script and Config Files
 
+![shell-format](https://github.com/cbachhuber/dotfiles-and-post-installation-scripts/workflows/shell-format/badge.svg)
+
 The script and config files in this folder allow you to quickly set up your Ubuntu installation with a reasonable developer configuration. Tested for Ubuntu 18.04 LTS.
 
 ## Downloading
