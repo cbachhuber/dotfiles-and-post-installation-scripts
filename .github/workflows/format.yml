@@ -6,14 +6,14 @@ on: [push, pull_request]
 jobs:
   shell-format:
     runs-on: ubuntu-latest
-    container: mvdan/shfmt:v3.1.1
+    # container: mvdan/shfmt:v3.1.1
     steps:
     - name: Check out Git repository
       uses: actions/checkout@v2
-    # - name: Install Snapcraft
-    #   uses: samuelmeuli/action-snapcraft@v1
-    # - name: Install shfmt
-    #   run: sudo snap install shfmt
+    - name: Install Snapcraft
+      uses: samuelmeuli/action-snapcraft@v1
+    - name: Install shfmt
+      run: sudo snap install shfmt
     - name: Apply shfmt
+      # uses: docker://mvdan/shfmt:v3.1.1
       run: shfmt -d .
-    # - uses: docker://mvdan/shfmt:v3.1.1
