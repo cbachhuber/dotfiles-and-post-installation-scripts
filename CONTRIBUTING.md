@@ -21,3 +21,17 @@ shfmt -w .
 ```
 
 to format all shell scripts in place.
+
+## Static analysis with shellcheck
+
+### Install
+
+```shell
+sudo apt install shellcheck
+```
+
+### Use
+
+```shell
+shellcheck setup.sh
+```
