@@ -20,7 +20,7 @@ DOTFILES_PATH="$(
     cd "$(dirname "$0")"
     pwd -P
 )"
-CONFIG_FOLDER=""$DOTFILES_PATH"/config"
+CONFIG_FOLDER="'$DOTFILES_PATH'/config"
 
 POSITIONAL=()
 while [[ $# -gt 0 ]]; do
@@ -47,7 +47,7 @@ while [[ $# -gt 0 ]]; do
             shift # past argument
             ;;
         -h | --help)
-            printf "Usage: $0 [-o] [-p] [-g] [-z] [-v]\n
+            printf "Usage: %s [-o] [-p] [-g] [-z] [-v]\n
 This script sets up your OS with a reasonable config and programs. 
 Via flags, you have the option to execute a subset of the script steps. 
 For more details, see README.md.\n
@@ -55,7 +55,7 @@ For more details, see README.md.\n
 -p      Install programs
 -g      Git configuration
 -v      Neovim configuration
--z      Oh-my-zsh configuration\n"
+-z      Oh-my-zsh configuration\n" "$0"
             exit 0
             ;;
         *)                     # unknown option
@@ -79,14 +79,14 @@ fi
 prompt_message_and_wait_for_input() {
     echo "$1"
     sleep 0.5
-    read -p "Waiting for you to press [enter]..." DUMMY_VARIABLE
+    read -r -p "Waiting for you to press [enter]..."
     printf "Continuing execution!\n\n"
     sleep 0.5
 }
 
 run_command_and_ask_to_close() {
     echo "Please close the new window(s) when you're done."
-    $@ >/dev/null 2>&1
+    "$@" >/dev/null 2>&1
     printf "Windows closed, continuing execution!\n\n"
     sleep 0.5
 }
@@ -97,7 +97,7 @@ ask_user_to_execute_command() {
         COMMAND=$2
         NO_MESSAGE=$3
         while true; do
-            read -p "$QUESTION [Y/n] " yn
+            read -r -p "$QUESTION [Y/n] " yn
             case $yn in
                 [Yy]*)
                     $COMMAND
@@ -121,8 +121,8 @@ ask_user_to_execute_command() {
 
 walk_through_os_tweaks() {
     echo "Walking through OS tweaks"
-    GNOME_TWEAKS_INSTALLED=$(dpkg -l | grep gnome-tweaks | wc -l) # gnome-tweaks is not part of the default Ubuntu packages: http://releases.ubuntu.com/bionic/ubuntu-18.04.3-desktop-amd64.manifest
-    if [ $GNOME_TWEAKS_INSTALLED = 0 ]; then
+    GNOME_TWEAKS_INSTALLED=$(dpkg -l | grep -c gnome-tweaks) # gnome-tweaks is not part of the default Ubuntu packages: http://releases.ubuntu.com/bionic/ubuntu-18.04.3-desktop-amd64.manifest
+    if [ "$GNOME_TWEAKS_INSTALLED" = 0 ]; then
         sudo apt install -y gnome-tweaks gnome-shell-extension-weather gnome-shell-extension-system-monitor gnome-shell-extension-impatience
         printf "Gnome extensions require a logout and login to become visible in gnome settings.
         Please log out and back in, and restart this script.\n\n"
@@ -179,8 +179,8 @@ configure_git() {
     echo "Configuring git"
     sudo apt install -y git
     # Git configuration
-    read -p "Enter your git user name (your full name, e.g. 'Max Maier': " GIT_NAME
-    read -p "Enter your git mail address: " GIT_MAIL
+    read -r -p "Enter your git user name (your full name, e.g. 'Max Maier': " GIT_NAME
+    read -r -p "Enter your git mail address: " GIT_MAIL
     git config --global user.name "$GIT_NAME"
     git config --global user.email "$GIT_MAIL"
     git config --global core.pager 'less -F -X' # use less only if you output does not fit to the screen
@@ -228,9 +228,9 @@ configure_oh_my_zsh() {
     ZSH_CUSTOM=/home/$(whoami)/.oh-my-zsh/custom
 
     # Use oh-my-zsh to install zsh plugins
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$ZSH_CUSTOM"/themes/powerlevel10k
+    git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-syntax-highlighting
 
     # Backing up old zshrc, symlinking to zshrc of this repo
     if [ -f ~/.zshrc ]; then
