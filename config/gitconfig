@@ -8,4 +8,5 @@
 	pm = pull master
 	d = diff
 	aa = add -u
-
+[rerere]
+	enabled = true
