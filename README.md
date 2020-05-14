@@ -1,6 +1,6 @@
 # Ubuntu Post Installation Script and Config Files
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](/LICENSE)
-![shell-format](https://github.com/cbachhuber/dotfiles-and-post-installation-scripts/workflows/shell-format/badge.svg)
+![Tests](https://github.com/cbachhuber/dotfiles-and-post-installation-scripts/workflows/tests/badge.svg)
 
 The script and config files in this folder allow you to quickly set up your Ubuntu installation with a reasonable developer configuration. Tested for Ubuntu 18.04 LTS.
 
