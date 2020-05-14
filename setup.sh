@@ -79,7 +79,7 @@ fi
 prompt_message_and_wait_for_input() {
     echo "$1"
     sleep 0.5
-    read -r -p "Waiting for you to press [enter]..."
+    read -r -p "Waiting for you to press [enter]..." UNUSED_VARIABLE
     printf "Continuing execution!\n\n"
     sleep 0.5
 }
