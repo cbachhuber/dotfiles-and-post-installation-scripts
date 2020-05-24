@@ -249,6 +249,15 @@ configure_oh_my_zsh()
 configure_kde()
 {
     sudo apt install kde-full
+    # Reboot, restart this script
+    # TODO check if kde installed, ssd3 is session manager, then continue
+    # Fix mouse to emulate clicks through taps: meta -> type 'touchpad'. Invert scrolling if you like
+    # Fix keyboard repeat: delay 200ms, rate 30/s
+    # Switch keyboard layout on meta+space
+    # Make snaps available when using zsh:
+    # sudo vim /etc/zsh/zshprofile
+    # Add line "emulate sh -c 'source /etc/profile'"
+
 }
 
 if [ "$OS_TWEAKS" = true ]; then walk_through_os_tweaks; fi
