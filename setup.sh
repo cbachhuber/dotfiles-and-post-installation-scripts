@@ -260,6 +260,7 @@ configure_kde()
     # Increase animation speed under 'Display and Monitor' -> 'Compositor'
     # Add shortcut to start terminator under 'Shortcuts' -> 'Custom Shortcuts' -> add new group and shortcut
     # Bind new shortcut (e.g. shift+meta+arrowleft/right) to move window to next screen: Shortcuts -> Global Shortcuts -> KWin -> Window to next screen
+    # Install redshift (sudo apt install redshift), then add to 'Autostart' with your geolocation (e.g. berlin: 'redshift -l 52.5:13.4')
 }
 
 if [ "$OS_TWEAKS" = true ]; then walk_through_os_tweaks; fi
