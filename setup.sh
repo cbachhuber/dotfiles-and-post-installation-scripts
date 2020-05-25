@@ -257,7 +257,9 @@ configure_kde()
     # Make snaps available when using zsh:
     # sudo vim /etc/zsh/zshprofile
     # Add line "emulate sh -c 'source /etc/profile'"
-
+    # Increase animation speed under 'Display and Monitor' -> 'Compositor'
+    # Add shortcut to start terminator under 'Shortcuts' -> 'Custom Shortcuts' -> add new group and shortcut
+    # Bind new shortcut (e.g. shift+meta+arrowleft/right) to move window to next screen: Shortcuts -> Global Shortcuts -> KWin -> Window to next screen
 }
 
 if [ "$OS_TWEAKS" = true ]; then walk_through_os_tweaks; fi
