@@ -1,4 +1,5 @@
 # Ubuntu Post Installation Script and Config Files
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](/LICENSE)
 ![Tests](https://github.com/cbachhuber/dotfiles-and-post-installation-scripts/workflows/Tests/badge.svg)
 
@@ -8,7 +9,7 @@ The script and config files in this folder allow you to quickly set up your Ubun
 
 I suggest cloning this repository to `~/.dotfiles`, though any other location will work as well. Just make sure to not move the folder after you started relying on the dotfiles in it.
 
-```
+```shell
 git clone https://github.com/cbachhuber/dotfiles-and-post-installation-scripts.git ~/.dotfiles
 ```
 
@@ -16,7 +17,7 @@ git clone https://github.com/cbachhuber/dotfiles-and-post-installation-scripts.g
 
 Execute script `setup.sh` in the toplevel folder of this repository
 
-```
+```shell
 .dotfiles/setup.sh
 ```
 
@@ -25,7 +26,6 @@ You will be asked to enter your sudo password for the apt operations.
 ### Setup arguments
 
 By default, `setup.sh` will work through all setup steps such a OS tweaks, program installation, git configuration etc. If you only want select a subset of these steps, use the below flags. As soon as a flag is given, the other steps are not implicitly executed, they need to be called explicitly per flag as well.
-
 
 - Flag `-o` or `--os-tweaks` walks you through OS tweaking steps such as key repeat adjustment and configuration of [gnome shell extensions](https://extensions.gnome.org/).
 - Flag `-p` or `--programs` installs programs such as [chromium](https://chromium.googlesource.com/chromium/src/), [vlc](https://www.videolan.org/), [gimp](https://www.gimp.org/), and dev tools such as python3, [terminator](https://gnometerminator.blogspot.com/p/introduction.html), git, and [zsh](https://en.wikipedia.org/wiki/Z_shell).
