@@ -20,7 +20,7 @@ DOTFILES_PATH="$(
     cd "$(dirname "$0")"
     pwd -P
 )"
-CONFIG_FOLDER="'$DOTFILES_PATH'/config"
+CONFIG_FOLDER="$DOTFILES_PATH/config"
 
 POSITIONAL=()
 while [[ $# -gt 0 ]]; do
