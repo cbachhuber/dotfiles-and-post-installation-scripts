@@ -114,6 +114,9 @@ source $ZSH/oh-my-zsh.sh
 # List directory contents upon change to it
 cl () {cd "$@" && ll}
 
+# Git
+alias ggr='git grep -n'
+
 # Proper df and du output
 alias df='df -h -x squashfs -x tmpfs -x devtmpfs'
 alias du1='du -hd 1'
