@@ -116,6 +116,7 @@ cl () {cd "$@" && ll}
 
 # Git
 alias ggr='git grep -n'
+alias ggri='git grep -n -i'
 
 # Proper df and du output
 alias df='df -h -x squashfs -x tmpfs -x devtmpfs'
