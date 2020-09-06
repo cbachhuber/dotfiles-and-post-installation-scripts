@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](/LICENSE)
 ![Tests](https://github.com/cbachhuber/dotfiles-and-post-installation-scripts/workflows/Tests/badge.svg)
 
-The script and config files in this folder allow you to quickly set up your Ubuntu installation with a reasonable developer configuration. Tested for Ubuntu 18.04 LTS.
+The script and config files in this folder allow you to quickly set up your Ubuntu installation with a reasonable developer configuration. Tested for Ubuntu 18.04 LTS. Most of the offered functionality also tested for Ubuntu 20.04 LTS, see section [Compatibility](#Compatibility).
 
 ## Downloading
 
@@ -33,3 +33,10 @@ By default, `setup.sh` will work through all setup steps such a OS tweaks, progr
 - Flag `-v` or `--configure-vim` guides you through common [neovim](https://github.com/neovim/neovim) configuration steps such as sourcing `~/.zshrc` and installing essential plugins such as [vim-fugitive](https://github.com/tpope/vim-fugitive), [vim-airline](https://github.com/vim-airline/vim-airline), and [vim-nerdtree](https://github.com/scrooloose/nerdtree).
 - Flag `-z` or `--configure-zsh` guides you through common zsh and [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh) configuration steps such as setting zsh as your default shell and installing oh-my-zsh plugins such as [Powerlevel 10k](https://github.com/romkatv/powerlevel10k) and [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions).
 - Flag `-h` or `--help` displays a help menu and exits the script.
+
+## Compatibility
+
+|                 | OS Tweaks | Programs | Git | Vim | ZSH |
+|-----------------|-----------|----------|-----|-----|-----|
+| Ubuntu 18.04    |     ✅    |    ✅    | ✅  |  ✅ | ✅  |
+| Ubuntu 20.04    |     ❓    |    ❓    | ✅  |  ✅ | ✅  |
