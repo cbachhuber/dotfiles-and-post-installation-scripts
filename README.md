@@ -36,7 +36,7 @@ By default, `setup.sh` will work through all setup steps such a OS tweaks, progr
 
 ## Compatibility
 
-|                 | OS Tweaks | Programs | Git | Vim | ZSH |
-|-----------------|-----------|----------|-----|-----|-----|
-| Ubuntu 18.04    |     ✅    |    ✅    | ✅  |  ✅ | ✅  |
-| Ubuntu 20.04    |     ❓    |    ❓    | ✅  |  ✅ | ✅  |
+|              |      OS Tweaks   |     Programs     |      Git         |         Vim      |        ZSH       |
+|--------------|------------------|------------------|------------------|------------------|------------------|
+| Ubuntu 18.04 |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
+| Ubuntu 20.04 |   :question:     |    :question:    |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
