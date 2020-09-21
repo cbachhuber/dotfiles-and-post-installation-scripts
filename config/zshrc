@@ -5,6 +5,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+ZSH_DISABLE_COMPFIX="true"
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -146,3 +148,15 @@ pastefinish() {
 }
 zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
+
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+## Nokia stuff
+alias local_pipline="/home/chris/TM1/my_stuff/local_pipeline.sh"
+alias clion="/home/chris/clion-2020.2.3/bin/clion.sh > /dev/null 2>&1 &"
+alias ctidy="python3 /home/chris/TM1/my_stuff/run-clang-tidy.py"
+
+# GUI apps in Win
+export DISPLAY=localhost:0.0
+
