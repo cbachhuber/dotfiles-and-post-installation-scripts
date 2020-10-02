@@ -157,6 +157,10 @@ alias local_pipline="/home/chris/.dotfiles/tm1_local_pipeline.sh"
 alias clion="/home/chris/clion-2020.2.3/bin/clion.sh > /dev/null 2>&1 &"
 alias ctidy="python3 /home/chris/TM1/my_stuff/run-clang-tidy.py"
 
+# Use clang compiler
+export CC=/usr/bin/clang
+export CXX=/usr/bin/clang++
+
 # GUI apps in Win
 export DISPLAY=localhost:0.0
 
