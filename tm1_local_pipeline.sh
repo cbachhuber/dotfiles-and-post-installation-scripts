@@ -2,22 +2,22 @@
 set -eu
 
 CLEAN_BUILD=false
-APPLY_CLANG_TIDY_FIX=false
+APPLY_CLANG_TIDY_FIX=true
 FULL_CLANG_FORMAT=false
 
 POSITIONAL=()
 while [[ $# -gt 0 ]]; do
     key="$1"
     case $key in
-        -f | --apply-clang-tidy-fix)
-            APPLY_CLANG_TIDY_FIX=true
+        -nofix | --dont-apply-clang-tidy-fix)
+            APPLY_CLANG_TIDY_FIX=false
             shift # past argument
             ;;
         -c | --clean-build)
             CLEAN_BUILD=true
             shift # past argument
             ;;
-        -fcf | --full-clang-format)
+        -f | --full-clang-format)
             FULL_CLANG_FORMAT=true
             shift # past argument
             ;;
@@ -39,12 +39,14 @@ if [ "$APPLY_CLANG_TIDY_FIX" = true ]; then
     mv $CMAKE_DIR/clang_tidy.cmake $CMAKE_DIR/old_clang_tidy.cmake
     cp ../my_stuff/clang_tidy.cmake $CMAKE_DIR/clang_tidy.cmake
 fi
-cmake -DCMAKE_INSTALL_PREFIX=/home/chris/TM1/install -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DBUILD_HM=OFF ..
+cmake -DCMAKE_INSTALL_PREFIX=/home/chris/TM1/install -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DBUILD_HM=OFF -DCMAKE_CXX_FLAGS="-Wall -Wconversion -Wextra -Wpedantic -Werror" ..
 if [ "$APPLY_CLANG_TIDY_FIX" = true ]; then
     rm $CMAKE_DIR/clang_tidy.cmake
     mv $CMAKE_DIR/old_clang_tidy.cmake $CMAKE_DIR/clang_tidy.cmake
 fi
+
 make -j $(nproc)
+
 if [ "$FULL_CLANG_FORMAT" = true ]; then
     cmake --build . --target clang_format
 else
@@ -52,5 +54,6 @@ else
     git diff -U0 --no-color v7.0-dev | clang-format-diff -p1 -i  # not ideal to relate to v7.0-dev
     cd build
 fi
+
 ctest
 
