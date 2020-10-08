@@ -39,7 +39,7 @@ if [ "$APPLY_CLANG_TIDY_FIX" = true ]; then
     mv $CMAKE_DIR/clang_tidy.cmake $CMAKE_DIR/old_clang_tidy.cmake
     cp ../my_stuff/clang_tidy.cmake $CMAKE_DIR/clang_tidy.cmake
 fi
-cmake -DCMAKE_INSTALL_PREFIX=/home/chris/TM1/install -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DBUILD_HM=OFF -DCMAKE_CXX_FLAGS="-Wall -Wconversion -Wextra -Wpedantic -Werror" ..
+cmake -DCMAKE_INSTALL_PREFIX=/home/chris/TM1/install -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DBUILD_HM=OFF -DCMAKE_CXX_FLAGS="-Wall -Wextra -Wpedantic -Werror" ..
 if [ "$APPLY_CLANG_TIDY_FIX" = true ]; then
     rm $CMAKE_DIR/clang_tidy.cmake
     mv $CMAKE_DIR/old_clang_tidy.cmake $CMAKE_DIR/clang_tidy.cmake
