@@ -154,6 +154,7 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 
 ## Nokia stuff
 alias local_pipline="/home/chris/.dotfiles/tm1_local_pipeline.sh"
+alias build_tmiv="/home/chris/.dotfiles/tm1_build_executables.sh"
 alias clion="/home/chris/clion-2020.2.3/bin/clion.sh > /dev/null 2>&1 &"
 alias ctidy="python3 /home/chris/TM1/my_stuff/run-clang-tidy.py"
 
@@ -163,6 +164,10 @@ export CXX=/usr/bin/clang++
 
 # GUI apps in Win
 export DISPLAY=localhost:0.0
+
+# Make TMIV and HM executables available globally
+export PATH=$PATH:/home/chris/TM1/install/bin
+export PATH=$PATH:/home/chris/HM/bin/umake/clang-10.0/x86_64/release
 
 # source /opt/ros/noetic/setup.zsh
 cd ~/TM1
