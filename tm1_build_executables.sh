@@ -28,6 +28,9 @@ mkdir -p build.install && cd build.install
 cmake -DCMAKE_INSTALL_PREFIX=/home/chris/TM1/install \
     -DENABLE_CLANG_TIDY=OFF \
     -DBUILD_CATCH2=OFF \
+    -DBUILD_HM=ON \
+    -DBUILD_TAppEncoder=TRUE \
+    -DBUILD_TAppDecoder=TRUE \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_CXX_FLAGS="-O3" \
     ..
