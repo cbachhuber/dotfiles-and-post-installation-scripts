@@ -41,7 +41,7 @@ if [ "$APPLY_CLANG_TIDY_FIX" = true ]; then
 fi
 cmake -DCMAKE_INSTALL_PREFIX=/home/chris/TM1/install \
     -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
-    -DBUILD_HM=OF \
+    -DBUILD_HM=OFF \
     -DCMAKE_CXX_FLAGS="-Wall -Wextra -Wpedantic -Werror" \
     ..
 if [ "$APPLY_CLANG_TIDY_FIX" = true ]; then
