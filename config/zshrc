@@ -156,6 +156,7 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 alias local_pipline="/home/chris/.dotfiles/tm1_local_pipeline.sh"
 alias build_tmiv="/home/chris/.dotfiles/tm1_build_executables.sh"
 alias clion="/home/chris/clion-2020.2.3/bin/clion.sh > /dev/null 2>&1 &"
+alias pycharm="/home/chris/pycharm-2020.2.3/bin/pycharm.sh > /dev/null 2>&1 &"
 alias ctidy="python3 /home/chris/TM1/my_stuff/run-clang-tidy.py"
 
 # Use clang compiler
