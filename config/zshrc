@@ -153,7 +153,7 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 ## Nokia stuff
-alias local_pipline="/home/chris/.dotfiles/tm1_local_pipeline.sh"
+alias local_pipeline="/home/chris/.dotfiles/tm1_local_pipeline.sh"
 alias build_tmiv="/home/chris/.dotfiles/tm1_build_executables.sh"
 alias local_pipeline_clang_and_gcc="/home/chris/.dotfiles/tm1_clang_and_gcc.sh"
 alias clion="/home/chris/clion-2020.2.3/bin/clion.sh > /dev/null 2>&1 &"
