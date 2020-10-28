@@ -10,6 +10,6 @@ printf "Build using only gcc\n"
 
 export CC=/usr/bin/clang
 export CXX=/usr/bin/clang++
-printf "\n\nBuild sing clang, do clang-tidy, clang-format, ctest\n\n"
+printf "\n\nBuild using clang, do clang-tidy, clang-format, ctest\n\n"
 "$SCRIPT_DIR"/tm1_local_pipeline.sh -c -hm
 

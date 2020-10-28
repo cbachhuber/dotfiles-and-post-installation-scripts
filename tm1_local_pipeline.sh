@@ -74,7 +74,7 @@ if [ "$BUILD_ONLY" = false ]; then
         cmake --build . --target clang_format
     else
         cd ..
-        git diff -U0 --no-color v7.0-dev | clang-format-diff -p1 -i  # not ideal to relate to v7.0-dev
+        git diff -U0 --no-color v7.0-dev | clang-format-diff-11 -p1 -i  # not ideal to relate to v7.0-dev
         cd build
     fi
 
