@@ -129,11 +129,14 @@ alias sapt='sudo apt'
 alias maken='make -j $(nproc)'
 
 # ZSH config
-bindkey -v
+bindkey -v  # vim emulation in terminal
 bindkey "^R" history-incremental-search-backward  # Overwrite vim's ctrl+r for backward search
 bindkey '^ ' autosuggest-execute  # Executes a suggestion on ctrl+space
 bindkey "^[[5~" history-beginning-search-backward  # pg-up
 bindkey "^[[6~" history-beginning-search-forward  # pg-dn
+
+# rm * doesn't require confirmation
+setopt rmstarsilent
 
 # This speeds up pasting w/ autosuggest
 # https://github.com/zsh-users/zsh-autosuggestions/issues/238
