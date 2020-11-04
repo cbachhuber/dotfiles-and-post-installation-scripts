@@ -159,6 +159,8 @@ alias local_pipeline_clang_and_gcc="/home/chris/.dotfiles/tm1_clang_and_gcc.sh"
 alias clion="/home/chris/clion-2020.2.3/bin/clion.sh > /dev/null 2>&1 &"
 alias pycharm="/home/chris/pycharm-2020.2.3/bin/pycharm.sh > /dev/null 2>&1 &"
 alias ctidy="python3 /home/chris/TM1/my_stuff/run-clang-tidy.py"
+alias grid="ssh grid01"
+alias kimmo="ssh kimmo"
 
 # Use clang compiler
 export CC=/usr/bin/clang
