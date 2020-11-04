@@ -22,8 +22,8 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 
 cd /home/chris/TM1
 CMAKE_DIR="$(pwd)/CMake"
-if [ "$CLEAN_BUILD" = true ]; then rm -rf build.install/; fi
 mkdir -p build.install && cd build.install
+if [ "$CLEAN_BUILD" = true ]; then cmake clean; fi
 
 cmake -DCMAKE_INSTALL_PREFIX=/home/chris/TM1/install \
     -DENABLE_CLANG_TIDY=OFF \

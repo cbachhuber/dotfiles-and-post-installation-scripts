@@ -47,8 +47,8 @@ fi
 
 cd /home/chris/TM1
 CMAKE_DIR="$(pwd)/CMake"
-if [ "$CLEAN_BUILD" = true ]; then rm -rf build/; fi
 mkdir -p build && cd build
+if [ "$CLEAN_BUILD" = true ]; then cmake clean; fi
 
 if [ "$APPLY_CLANG_TIDY_FIX" = true ]; then
     mv $CMAKE_DIR/clang_tidy.cmake $CMAKE_DIR/old_clang_tidy.cmake
