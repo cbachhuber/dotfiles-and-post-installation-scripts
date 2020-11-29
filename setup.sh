@@ -243,6 +243,13 @@ configure_oh_my_zsh() {
     echo "Feel free to try out zsh by opening a new terminal (if you made zsh your default shell), or by executing 'zsh' in this terminal. powerlevel10k will ask you a couple of questions on the first zsh start."
 }
 
+configure_i3() {
+    sudo apt install i3 rofi
+    ln -s ~/.dotfiles/config/i3_config config
+    ln -s ~/.dotfiles/config/i3_statusconfig statusconfig
+    echo "Now, log out. In the login screen, choose i3 as window manager"
+}
+
 if [ "$OS_TWEAKS" = true ]; then walk_through_os_tweaks; fi
 if [ "$PROGRAMS" = true ]; then install_programs; fi
 if [ "$CONFIGURE_GIT" = true ]; then configure_git; fi
