@@ -127,6 +127,7 @@ alias sd='sudo shutdown now'  # Consider adding yourself to sudoers for this com
 alias rb='sudo reboot now'  # Consider adding yourself to sudoers for this command: https://askubuntu.com/a/159009/1031154
 alias sapt='sudo apt'
 alias maken='make -j $(nproc)'
+alias open='xdg-open'
 
 # ZSH config
 bindkey -v  # vim emulation in terminal
