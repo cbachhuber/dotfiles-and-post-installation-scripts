@@ -46,7 +46,7 @@ if [ "$BUILD_ONLY" = true ]; then
 fi
 
 cd /home/chris/TM1
-CMAKE_DIR="$(pwd)/CMake"
+CMAKE_DIR="$(pwd)/cmake"
 mkdir -p build && cd build
 if [ "$CLEAN_BUILD" = true ]; then cmake clean; fi
 
@@ -58,6 +58,7 @@ cmake -DCMAKE_INSTALL_PREFIX=/home/chris/TM1/install \
     -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
     -DENABLE_CLANG_TIDY="$DO_CLANG_TIDY" \
     -DBUILD_HM="$ENABLE_HM" \
+    -DNO_INTERNET=ON \
     -DCMAKE_CXX_FLAGS="-Wall -Wextra -Wpedantic -Werror" \
     ..
 
