@@ -195,7 +195,7 @@ assign [class="jetbrains-pycharm-ce"] $ws2
 assign [class="Code"] $ws3
 assign [class="Slack"] $ws4
 assign [class="Chromium"] $ws4
-assign [class="Spotify"] $ws5
+for_window [class="Spotify"] move to workspace $ws5
 
 # Input config
 exec_always xset r rate 220 22  # Key repeat rate after delay
