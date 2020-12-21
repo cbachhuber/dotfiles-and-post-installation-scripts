@@ -19,28 +19,28 @@ order += "memory"
 order += "tztime local"
 
 ethernet _first_ {
-        format_up = "E: %ip (%speed)"
+        format_up = " E: %ip (%speed) "
         format_down = "E: down"
 }
 
 disk "/" {
-        format = "SSD: %used/%avail"
+        format = " SSD %used/%avail "
 }
 
 disk "/media/chris/storage" {
-        format = "HDD %used/%avail"
+        format = " HDD %used/%avail "
 }
 
 load {
-        format = "%1min"
+        format = " CPU %1min "
 }
 
 memory {
-        format = "%used | %available"
+        format = " RAM %used/%available "
         threshold_degraded = "1G"
         format_degraded = "MEMORY < %available"
 }
 
 tztime local {
-        format = "%d.%m.%y %H:%M"
+        format = " %d.%m.%y %H:%M "
 }
