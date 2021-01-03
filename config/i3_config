@@ -188,6 +188,7 @@ exec i3-sensible-terminal
 exec pycharm-community
 exec slack
 exec spotify
+exec --no-startup-id redshift
 
 # Assign startup applications to workspaces
 assign [class="jetbrains-clion"] $ws1
