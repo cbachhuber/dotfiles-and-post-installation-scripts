@@ -11,12 +11,22 @@ general {
         interval = 5
 }
 
-order += "load"
+order += "cpu_usage"
 order += "memory"
 order += "ethernet _first_"
 order += "disk /"
 order += "disk /media/chris/storage"
 order += "tztime local"
+
+cpu_usage {
+        format = " CPU %usage "
+}
+
+memory {
+        format = " RAM %used/%total "
+        threshold_degraded = "1G"
+        format_degraded = "MEMORY < %available"
+}
 
 ethernet _first_ {
         format_up = " E: %ip (%speed) "
@@ -24,21 +34,11 @@ ethernet _first_ {
 }
 
 disk "/" {
-        format = " SSD %used/%avail "
+        format = " SSD %used/%total "
 }
 
 disk "/media/chris/storage" {
-        format = " HDD %used/%avail "
-}
-
-load {
-        format = " CPU %1min "
-}
-
-memory {
-        format = " RAM %used/%available "
-        threshold_degraded = "1G"
-        format_degraded = "MEMORY < %available"
+        format = " HDD %used/%total "
 }
 
 tztime local {
