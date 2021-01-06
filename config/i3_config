@@ -199,13 +199,15 @@ assign [class="Chromium"] $ws4
 for_window [class="Spotify"] move to workspace $ws5
 
 # Input config
+exec_always --no-startup-id numlockx off  # sudo apt install numlockx
 exec_always xset r rate 220 22  # Key repeat rate after delay
 exec_always setxkbmap -layout us,de  # Keyboard layouts
 exec_always setxkbmap -option 'grp:alt_shift_toggle'
 
 # Media Keys
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
+#bindsym XF86AudioPlay exec playerctl play
+#bindsym XF86AudioPause exec playerctl pause
+bindsym $mod+p exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
