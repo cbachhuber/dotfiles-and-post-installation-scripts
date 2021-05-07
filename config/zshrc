@@ -128,6 +128,7 @@ alias rb='sudo reboot now'  # Consider adding yourself to sudoers for this comma
 alias sapt='sudo apt'
 alias maken='make -j $(nproc)'
 alias open='xdg-open'
+alias authorranking='git ls-files | while read f; do git blame -w --line-porcelain -- "$f" | grep -I '^author '; done | sort -f | uniq -ic | sort -n'
 
 # ZSH config
 bindkey -v  # vim emulation in terminal
