@@ -201,8 +201,8 @@ for_window [class="Spotify"] move to workspace $ws5
 # Input config
 exec_always --no-startup-id numlockx off  # sudo apt install numlockx
 exec_always xset r rate 220 22  # Key repeat rate after delay
-exec_always setxkbmap -layout us,de  # Keyboard layouts
-exec_always setxkbmap -option 'grp:alt_shift_toggle'
+bindsym $mod+shift+d exec setxkbmap -layout de  
+bindsym $mod+shift+u exec setxkbmap -layout us  
 
 # Media Keys
 #bindsym XF86AudioPlay exec playerctl play
@@ -211,3 +211,5 @@ bindsym $mod+p exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
+# Other shortcuts  
+bindsym --release $mod+shift+s exec import ~/Pictures/screenshot_$(date +'%F_%H-%M-%S').png  
