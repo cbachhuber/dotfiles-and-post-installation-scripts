@@ -108,6 +108,9 @@ source $ZSH/oh-my-zsh.sh
 # Remove hostname from beginning of every line
 #prompt_context() {}
 
+# Don't ask for permission when updating
+DISABLE_UPDATE_PROMPT=true
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
