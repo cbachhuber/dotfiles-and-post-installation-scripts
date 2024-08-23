@@ -152,5 +152,18 @@ pasteinit() {
 pastefinish() {
   zle -N self-insert $OLD_SELF_INSERT
 }
+
+# aliases
+function gcamp(){
+  if ! [ -z $1 ]; then
+    git commit -am $1 && git push
+  fi
+}
+function ff(){
+  if ! [ -z $1 ]; then
+    firefox $1 >/dev/null 2>&1 & disown
+  fi
+}
+
 zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
