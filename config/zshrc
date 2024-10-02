@@ -157,7 +157,7 @@ pastefinish() {
 function gcamp(){
   if ! [ -z $1 ]; then
       # trying to commit a second time if the first time failed and was auto-fixed by pre-commit
-      (git commit -am $1 || git commit -am $1) && git push
+      (git commit -am $1 || git commit -am $1) && git push origin "$(git_current_branch)"
   fi
 }
 function ff(){
